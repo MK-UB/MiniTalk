@@ -23,17 +23,16 @@
 // 	}
 // }
 
-void	hendler(int sig)
+void	handler_func(int sig)
 {
-	printf("%d\n", sig);
+	//printf("%d\n", sig);
 	static int i;
 	static char c;
 
 	if (sig == SIGUSR1)
 	{
 		c = c | (1 << i);
-	}
-	i++;
+	}	i++;
 	if (i == 8)
 	{
 		write(1, &c, 1);
@@ -43,15 +42,22 @@ void	hendler(int sig)
 	// ft_convert(c);
 }
 
+ft_recieved(int sig)
+{
+	
+}
+
 int	main()
 {
 	printf("this PID ---> %d\n", getpid());
 
 	while (1)
 	{
-		signal(SIGUSR1, &hendler);
-		signal(SIGUSR2, &hendler);
+		signal(SIGUSR1, &handler_func);
+		signal(SIGUSR2, &handler_func);
 		pause();
+	 //write(1, "\n", 1);
+	 ft_recieved()
 	}
 	return (0);
 }
